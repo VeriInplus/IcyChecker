@@ -9,15 +9,15 @@ SmartPulse由两部分构成，第一部分为VeriSol的修改版，用于将Sol
 
 + [VeriSol](https://github.com/utopia-group/verisol)
 
-> 我们**强烈建议**使用对应的版本来进行构建，避免出现意料之外的问题。如果你当前开发环境与这些依赖项冲突，我们建议在虚拟环境或docker中完成以下操作。我们并未尝试所有的可用版本，您可尝试或尽量避免这种情况。
+> 建议使用对应的版本来进行构建，避免出现意外。如果你当前开发环境与这些依赖项冲突，建议在虚拟环境或docker中完成以下操作。
 
 ## 构建
 
-在进行正式构建前，你可以先确保已经安装了Python3和JDK1.8，并将其添加至环境变量中，关于这一步此处不在此做过多说明，为了检查是否完成了安装，您可以通过`--version`命令来进行查看。当然，你也可以在完成VeriSol的构建之后再进行这一步。
+在进行正式构建前，你可以先确保已经安装了Python3和JDK1.8，并将其添加至环境变量中，关于这一步此处不在此做过多说明，为了检查是否完成了安装，您可以通过`-version`命令来进行查看。当然，你也可以在完成VeriSol的构建之后再进行这一步。
 
 ### Verisol
 
-如工具描述所言，该工具首先需要安装一个修改版本的[VeriSol](https://github.com/utopia-group/verisol)。VeriSol是微软的一个研究项目，旨在为智能合约建立一个形式化的验证和分析系统原型。你可以按照以下步骤完成，也可以参考其完整的安装指南进行。
+如工具描述所言，该工具首先需要安装一个修改版本的[VeriSol](https://github.com/utopia-group/verisol)。VeriSol是微软的一个研究项目，旨在为智能合约建立一个形式化验证和分析系统原型。你可以按照以下步骤完成，也可以参考其完整的安装指南进行。
 
 #### 1. 从[.NET官网](https://dotnet.microsoft.com/download/dotnet-core/2.2#sdk-2.2.106)安装 .NET Core（version 2.2）
 
@@ -27,7 +27,7 @@ VeriSol在首次运行时会安装Solidity编译器（仅适用于Windows和Linu
 
 #### 2. 从源代码安装工具
 
-请执行一下命令：
+执行以下命令，获取代码仓库：
 
 ```shell
 git clone https://github.com/utopia-group/verisol.git
@@ -47,7 +47,7 @@ dotnet tool install VeriSol --version 0.1.1-alpha --global --add-source %VERISOL
 
 VeriSol在下一步的工具中会被直接调用，因此建议将其设置为全局可用，这样做能够有效避免环境配置带来的麻烦。
 
-如果你安装过老版本，可能还需要卸载掉之前的版本，运行 `dotnet tool uninstall --global VeriSol`
+如果安装过老版本，可能还需要卸载掉之前的版本，运行 `dotnet tool uninstall --global VeriSol`
 
 >可能的报错：Couldn't find a valid ICU package installed on the system. Set the configuration flag System.Globalization.Invariant to true if you want to run with no globalization support. 你可能会遇到这个错误，这意味着你缺少libICU，或者可以修改System.Globalization.Invariant。
 >
@@ -57,7 +57,7 @@ VeriSol在下一步的工具中会被直接调用，因此建议将其设置为�
 
 运行命令 `Verisol`，将看到帮助项。
 
-> Verisol也是一个验证工具，只不过功能较为有限，你可以在其主页了解相关内容，其数据集位于先前克隆仓库中的`/Test/regressions`，用法为`VeriSol foo.sol FunctionName`。
+> Verisol也是一个验证工具，只不过功能有限，你可以在其主页了解相关内容，其数据集位于先前克隆仓库中的`/Test/regressions`，用法为`VeriSol foo.sol FunctionName`。
 
 
 
