@@ -34,6 +34,8 @@ A Intention-to-Code consistency checker for  Smart Contracts
 
 本节将列举两个极其常见的案例，众筹和竞拍，两个案例都涉及到了自由变量，是较为复杂的规约形式，在大多数的情况下，只需要属性就足够了。我们提供了一个优化版的测试数据集，你可以克隆或下载本仓库内容，所有测试用例位于`/data`文件夹下。在使用时，可以将文件夹中内容置于`/SmartPulse`根目录下。你也可以从依赖工具原始仓库中获取论文相关的所有benchmark和运行结果。
 
+了解更多目前工具支持的规约和使用场景，参见[使用场景](availableSpec.md)
+
 **众筹**
 
 如何出资人没有取走钱，那么合约中保留了出资人的出资记录。
@@ -70,9 +72,9 @@ A Intention-to-Code consistency checker for  Smart Contracts
 
 说明：
 
-- 更多的例子在`/data`下，该目录下还包含了VeriSol工具提供的示例，以及工具[Verx](https://github.com/eth-sri/verx-benchmarks)的数据集。你可以在其中找到更多更简单或复杂的用例。
+- `/data`目录下包含了VeriSol工具提供的示例，工具[Verx](https://github.com/eth-sri/verx-benchmarks)的示例。你可以在其中找到更多更简单或复杂的测试用例。
 - 值得说明的是，当前工具所能识别的规约一般以`.spec`为后缀，但也可以不是，并且一个合约可以验证的规约一般来说有多个。
-- 可以将结果重定向输出为`.log`文件，如果你想直接运行`.bpl`文件，可通过使用`SmartPulse.sh xxxx.bpl`来实现。
+- 可以将结果重定向输出为`.log`文件。
 
 ## 参考资料
 
