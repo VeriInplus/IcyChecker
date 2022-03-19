@@ -22,7 +22,7 @@ A Intention-to-Code consistency checker for  Smart Contracts.
 
 #### 2 逐步配置
 
-直接参考依赖工具构建方法，点击[该文档](originBuild.md)查看如何构建。
+直接参考依赖工具构建方法，点击[原始构建](originBuild.md)查看如何构建。
 
 如要了解当前工具的细节，建议采用此方法，除了本文档以外，你也可以参考原仓库。
 
