@@ -9,7 +9,7 @@ SmartPulse由两部分构成，第一部分为VeriSol的修改版，用于将Sol
 
 + [VeriSol](https://github.com/utopia-group/verisol)
 
-> 建议使用对应的版本来进行构建，避免出现意外。如果你当前开发环境与这些依赖项冲突，建议在虚拟环境或docker中完成以下操作。
+> 建议使用对应的版本进行构建，以避免出现意外。如果你当前开发环境与这些依赖项冲突，建议在虚拟环境或docker中完成以下操作。
 
 ## 构建
 
@@ -17,15 +17,15 @@ SmartPulse由两部分构成，第一部分为VeriSol的修改版，用于将Sol
 
 ### Verisol
 
-如工具描述所言，该工具首先需要安装一个修改版本的[VeriSol](https://github.com/utopia-group/verisol)。VeriSol是微软的一个研究项目，旨在为智能合约建立一个形式化验证和分析系统原型。你可以按照以下步骤完成，也可以参考其完整的安装指南进行。
+如工具描述所言，该工具首先需要安装一个魔改版的[VeriSol](https://github.com/utopia-group/verisol)。VeriSol是微软的一个研究项目，旨在为智能合约建立一个形式化验证和分析系统原型。你可以按照以下步骤完成，也可以参考其完整的安装指南进行。
 
-#### 1. 从[.NET官网](https://dotnet.microsoft.com/download/dotnet-core/2.2#sdk-2.2.106)安装 .NET Core（version 2.2）
+#### 1 从[.NET官网](https://dotnet.microsoft.com/download/dotnet-core/2.2#sdk-2.2.106)安装 .NET Core（version 2.2）
 
 > .NET Core 2.2 SDK (v2.2.207) 的二进制包是可用的。
 
 VeriSol在首次运行时会安装Solidity编译器（仅适用于Windows和Linux）、Z3定理证明器、Corral和Boogie，其中后两个作为dotnet CLI工具安装。
 
-#### 2. 从源代码安装工具
+#### 2 从源代码安装工具
 
 执行以下命令，获取代码仓库：
 
@@ -49,11 +49,10 @@ VeriSol在下一步的工具中会被直接调用，因此建议将其设置为�
 
 如果安装过老版本，可能还需要卸载掉之前的版本，运行 `dotnet tool uninstall --global VeriSol`
 
->可能的报错：Couldn't find a valid ICU package installed on the system. Set the configuration flag System.Globalization.Invariant to true if you want to run with no globalization support. 你可能会遇到这个错误，这意味着你缺少libICU，或者可以修改System.Globalization.Invariant。
+>可能的报错：Couldn't find a valid ICU package installed on the system. Set the configuration flag System.Globalization.Invariant to true if you want to run with no globalization support. 你可能会遇到这个错误，这意味着你缺少libICU。
 >
->建议通过前者解决问题，你可以通过安装yum解决这个问题，或者采用网络上提供的其他方法。
 
-#### 3. 验证安装结果
+#### 3 验证安装结果
 
 运行命令 `Verisol`，将看到帮助项。
 
@@ -108,5 +107,5 @@ Harness Modifiers:
   -checkPrePost:<fn1,fn2,...> | Check pre/post conditions of the specified functions 
 ```
 
-现在回到[README](README.md)看下一步吧~
+现在回到[使用示例](/?id=usage)看下一步吧~
 
