@@ -1,0 +1,1 @@
+// #LTLProperty: [](!(finished(UniswapV2Factory.createPair(tokenA, tokenB), tokenA == tokenB)))
