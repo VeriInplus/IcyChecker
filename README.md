@@ -14,32 +14,27 @@ A Intention-to-Code consistency checker for  Smart Contracts.
 
 ## Getting Started
 
-目前，本项目可通过一个配置好的docker容器或完全手动配置来实现，详见[使用文档](https://veriinplus.github.io/IcyChecker)。
+目前，本项目可通过一个配置好的docker容器或完全手动配置来实现，详见[快速上手](https://veriinplus.github.io/IcyChecker/#/?id=%e5%bf%ab%e9%80%9f%e4%b8%8a%e6%89%8b)。
 
 > 未来，我们会进一步简化工具的安装方法，尽可能可能提供即插即用的使用方案。
 
 ## Usage
 
-在使用之前，[了解规约的含义是有必要的](https://veriinplus.github.io/IcyChecker/#/spec)。
+在使用之前，需要学习[规约概述](https://veriinplus.github.io/IcyChecker/#/spec)。
 
-正如项目的初衷所述，使用者只需要编写一个规约即可实现对智能合约源码的验证，因此工具的理想的验证形式为：
+使用者只需要编写一个规约即可实现对智能合约源码的验证，因此工具的理想的验证形式为：
 
 ```
 IcyChecker contractFile contractName spec
 ```
 
-目前，工具仍处于初步开发阶段，我们提供了SmartPulse的使用说明，参见[使用文档用法部分](https://veriinplus.github.io/IcyChecker/#/?id=usage)，该部分提供了两个在公链上极为常见的场景案例——众筹和竞拍，同时我们也提供了目前论文中出现过的论文数据集。
+目前，我们提供了SmartPulse的使用说明，参见[使用文档](https://veriinplus.github.io/IcyChecker/)。该部分提供了两个在公链上极为常见的场景案例——众筹和竞拍，同时我们也提供了目前论文中出现过的合约数据集。
 
 ## TODO
-
-更好的算法和应用：
-
-- [ ] 研究依赖工具的设计和实现
-- [ ] 整合工具，实现便捷的构建
-- [ ] 研究规约的适用场景和范围
-- [ ] 研究联盟链合约验证情形
+- [ ] 调研联盟链合约验证情形，研究规约的适用场景和范围
 - [ ] 研究规约的易写和易读性
-- [ ] 不断完善文档和使用说明
+- [ ] 研究依赖工具的设计和实现
+- [ ] 完善文档和使用说明
 
 ## License
 
