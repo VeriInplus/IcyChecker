@@ -14,6 +14,11 @@ A Intention-to-Code consistency checker for  Smart Contracts
 
 由于目前使用的两个工具有较多的依赖项，暂时还无法将其简单进行合并，实现工具的即插即用。因此，我们提供了一个已经配置好的Ubuntu容器（3.49G），它已经配置好了所有内容，工具位于`/tool/smartpulse/SmartPulse`目录下，点击[此处](https://share.weiyun.com/wceEARU2)下载。需要做的仅仅是`docker import`和`docker run`，使用交互式命令`/bin/bash`启动，并首先运行`source /etc/profile`。
 
+> docker import Contrainer.tar IcyChecker:v1
+> docker run --name IcyChecker -i -t IcyChecker:v1 /bin/bash
+>
+> 容器是在x64环境下导出的，建议使用相同的指令集架构的环境来运行。
+
 #### 2 逐步配置
 
 直接参考依赖工具构建方法，点击[原始构建](originBuild.md)查看如何构建。
@@ -70,6 +75,11 @@ A Intention-to-Code consistency checker for  Smart Contracts
 
 ## 参考资料
 
-* [Formal Verification of Workflow Policies for Smart Contracts in Azure Blockchain.](https://doi.org/10.1007/978-3-030-41600-3_7)
-* [SmartPulse: Automated Checking of Temporal Properties in Smart Contracts.](https://doi.org/10.1109/SP40001.2021.00085)
+* VeriSol: [Formal Verification of Workflow Policies for Smart Contracts in Azure Blockchain.](https://doi.org/10.1007/978-3-030-41600-3_7)
+
+* SmartPulse: [SmartPulse: Automated Checking of Temporal Properties in Smart Contracts.](https://doi.org/10.1109/SP40001.2021.00085)
+
+* Model Checking: [Handbook of Model Checking](https://link.springer.com/book/10.1007/978-3-319-10575-8)
+
+  
 
