@@ -58,9 +58,13 @@ source /etc/profile
 ### 模板1
 
 - 文字描述：合约中变量x在合约运行生命周期中不会出现某性质
-- #LTLProperty: \[\](!运行状态(函数, 表达式))
+
+- 规约模板：`#LTLProperty: [](!运行状态(函数, 表达式))`
+
 - 运行状态可选：finished，started分别代表结束和开始
+
 - 函数可选：*代表任意函数，合约.函数名表示具体函数
+
 - 表达式：一阶逻辑表示式，包括加减乘除、大于、小于和等于
 
 **示例**：
@@ -85,9 +89,9 @@ source /etc/profile
 
 - 语言描述：满足Fairness中事件执行的情况下，Property满足相应性质
 
-- // #LTLFairness: \[\](<>运行状态(函数, 表达式))
+- 规约模板：`// #LTLFairness: [](<>运行状态(函数, 表达式))`
 
-  //#LTLProperty: \[](<>运行状态(函数, 表达式))
+  ​			  	 `//#LTLProperty: [](<>运行状态(函数, 表达式))`
 
 - 运行状态可选：同上，例如started和finished
 
@@ -108,7 +112,7 @@ source /etc/profile
   // #LTLProperty: [](<>(finished(Auction.bid)))
   ```
 
-  验证脚本（考虑存在重入情形）：
+- 验证脚本（考虑存在重入情形）：
 
 ```
 ./IcyChecker.py -singleCallback test/RevertDos.sol Auction test/RevertDos.spec 
