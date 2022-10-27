@@ -13,7 +13,7 @@ A Intention-to-Code consistency checker for Smart Contracts.
 docker pull inplus/icychecker
 ```
 
-如果你需要直接下载，也可从[docker hub上直接下载](https://hub.docker.com/repository/docker/inplus/icychecker)。
+你也可从[docker hub上直接上找到它](https://hub.docker.com/repository/docker/inplus/icychecker)。
 
 2. 运行容器
 
