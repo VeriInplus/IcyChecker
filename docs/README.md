@@ -3,7 +3,7 @@ A Intention-to-Code consistency checker for Smart Contracts.
 
 该工具由中山大学InplusLab和微众银行团队共同合作修改和推进。
 
-<img src="../asset/parties.jpg" alt="参与方" style="zoom: 67%;" />
+<img src="asset/parties.jpg" alt="参与方" style="zoom: 67%;" />
 
 ## 快速上手
 
@@ -54,6 +54,10 @@ source /etc/profile
 
 
 ## 使用方法
+
+工具的运行原理如下所示。
+
+<img src="asset/overview.png" alt="Overview" style="zoom: 40%;" />
 
 在使用之前，你可能需要学习[规约概述](spec.md)，但这不是必要的，学习它只是为了更好地理解如何写出一个正确的规约。当然为了了解更多目前工具支持的规约和使用场景，也许你还需要参看[支持场景](availableSpec.md)，用一些案例理解规约的原理。
 
