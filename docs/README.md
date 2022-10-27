@@ -1,77 +1,135 @@
 # IcyChecker
-A Intention-to-Code consistency checker for  Smart Contracts
-
-### 依赖工具
-
-本项目基于现有的两个工具进行研究和开发，目前主要是第二个：
-
-* [VeriSol](https://github.com/utopia-group/verisol)
-* [SmartPulseTool](https://github.com/utopia-group/SmartPulseTool/tree/master)
+A Intention-to-Code consistency checker for Smart Contracts.
 
 ## 快速上手
 
 #### 1 直接使用
 
-由于目前使用的两个工具有较多的依赖项，暂时还无法将其简单进行合并，实现工具的即插即用。因此，我们提供了一个已经配置好的Ubuntu容器（3.49G），它已经配置好了所有内容，工具位于`/tool/smartpulse/SmartPulse`目录下，点击[此处](https://share.weiyun.com/wceEARU2)下载。需要做的仅仅是`docker import`和`docker run`，使用交互式命令`/bin/bash`启动，并首先运行`source /etc/profile`。
+由于目前工具有较多的依赖项，例如python2、java8、dotnet2.2等，为了实现工具的即插即用，我们在[docker hub](https://hub.docker.com/repository/docker/inplus/icychecker)上提供了一个已经配置好的Docker镜像(897.74 MB)，它已经配置好了所有内容，你可以通过非常简单的命令开始你的尝试。
 
-> docker import Contrainer.tar IcyChecker:v1
-> docker run --name IcyChecker -i -t IcyChecker:v1 /bin/bash
->
-> 容器是在x64环境下导出的，建议使用相同的指令集架构的环境来运行。
+1. 拉取镜像
+
+```bash
+docker pull inplus/icychecker
+```
+
+如果你需要直接下载，也可从[docker hub上直接下载](https://hub.docker.com/repository/docker/inplus/icychecker)。
+
+2. 运行容器
+
+```bash
+docker run -it inplus/icychecker /bin/bash
+```
+
+3. 进入工具文件夹
+
+```bash
+cd ~/icychecker
+```
+
+4. 激活环境变量
+
+```
+source /etc/profile
+```
+
+4. 开始使用
+
+   详见下一部分。
+
+> 你完全可以使用交互式的方式来进行访问，工具的翻译和验证代码已位于其中。
+
+> 注：容器是在ubuntu x64环境下导出的，需使用相同的指令集架构的环境来运行。
+
+> 注：受先前部署时遇到的问题，这一次我们尽可能减小了容器的大小，同时也将许多地方修改为无需额外下载和配置。如果你需要修改，请参考逐步配置中提到的方法。
 
 #### 2 逐步配置
 
 直接参考依赖工具构建方法，点击[原始构建](originBuild.md)查看如何构建。
 
-如要了解当前工具的细节，建议采用此方法。除本文档以外，也可以参考原仓库。
+
 
 ## 使用方法
 
-在使用之前，需要学习[规约概述](spec.md)。
+在使用之前，你可能需要学习[规约概述](spec.md)，但这不是必要的，学习它只是为了更好地理解如何写出一个正确的规约。当然为了了解更多目前工具支持的规约和使用场景，也许你还需要参看[支持场景](availableSpec.md)，用一些案例理解规约的原理。
 
-本节将列举两个案例，众筹和竞拍。两个案例都涉及到了自由变量，是较为复杂的规约形式，在大多数的情况下，只需要属性就足够了。我们提供了一个优化版的测试数据集，可以克隆或下载本仓库内容，所有测试用例位于`/data`文件夹下。在使用时，可以将文件夹中内容置于`/SmartPulse`根目录下。也可以从依赖工具原始仓库中获取论文相关的所有benchmark和运行结果。
+为了方便更快上手IcyChecker，我们也提供了两个在实际场景中非常常见的**规约模板**。
 
-了解更多目前工具支持的规约和使用场景，参见[支持场景](availableSpec.md)
+### 模板1
 
-**众筹**
+- 文字描述：合约中变量x在合约运行生命周期中不会出现某性质
+- #LTLProperty: \[\](!运行状态(函数, 表达式))
+- 运行状态可选：finished，started分别代表结束和开始
+- 函数可选：*代表任意函数，合约.函数名表示具体函数
+- 表达式：一阶逻辑表示式，包括加减乘除、大于、小于和等于
 
-如何出资人没有取走钱，那么合约中保留了出资人的出资记录。
+**示例**：
 
-```
-// #LTLVariables: b:Ref,v:int
-// #LTLFairness: [](!started(Crowdfunding.Claim, msg.sender == b))
-// #LTLProperty: [](finished(Crowdfunding.Donate, msg.sender == b && msg.value == v && v != 0) ==> [](!finished(*, this.backers[b] != v))) 
-```
+- 合约：counter.sol
 
-进入到`/SmartPulse`目录下运行
+- 文字描述： this.tool.counter.value在运行过程中不会小于0
 
-```shell
-./SmartPulse.py Crowdfunding.sol Crowdfunding CrowdfundingSpec.spec
-```
+- 规约语言：
 
-**竞拍**
+  ```
+   // #LTLProperty: ![](finished(*, this.tool.counter.value < 0))
+  ```
 
-> 长合约示例，可能需要较长时间。
-
-竞拍完全结束之后，用户可以取回他之前竞拍时投入的所有资金。	
+- 验证脚本：
 
 ```
-// #LTLVariables: user:Ref
-// #LTLFairness: (<>(finished(ValidatorAuction.withdraw, (user == msg.sender))))
-// #LTLProperty: []((finished(ValidatorAuction.closeAuction)) ==> (<>(finished(send(from, to, amt), (to == user && amt == fsum(ValidatorAuction.bid, 2, (user == msg.sender)))))))
+./IcyChecker.py test/counter.sol CounterUtil test/counter.spec
 ```
 
-运行
+### 模板2
 
-```shell
-./SmartPulse.py ValidatorAuction.sol ValidatorAuction ValidatorAuctionSpec.spec 
+- 语言描述：满足Fairness中事件执行的情况下，Property满足相应性质
+
+- // #LTLFairness: \[\](<>运行状态(函数, 表达式))
+
+  //#LTLProperty: \[](<>运行状态(函数, 表达式))
+
+- 运行状态可选：同上，例如started和finished
+
+- 函数可选：同上，所有函数或某一具体函数
+
+- 表达式：同上，一阶逻辑表示式
+
+**示例**：
+
+- 合约：RevertDos.sol
+
+- 文字描述： 开始执行bid函数后，bid应该被执行完毕
+
+- 规约语言：
+
+  ```
+  // #LTLFairness: [](<>(started(Auction.bid, msg.value > this.currentBid)))
+  // #LTLProperty: [](<>(finished(Auction.bid)))
+  ```
+
+  验证脚本（考虑存在重入情形）：
+
+```
+./IcyChecker.py -singleCallback test/RevertDos.sol Auction test/RevertDos.spec 
 ```
 
-说明：
+> 注：更多相应的验证可用参数可通过-h进行查看。
 
-- `/data`目录下包含了VeriSol工具提供的示例，工具[Verx](https://github.com/eth-sri/verx-benchmarks)的示例。你可以在其中找到更多更简单或复杂的测试用例。
-- 值得说明的是，当前工具所能识别的规约一般以`.spec`为后缀，但也可以不是，并且一个合约可以验证的规约一般来说有多个。
-- 可以将结果重定向输出为`.log`文件。
+
+
+## 依赖工具
+
+本项目基于现有的两个工具进行研究和开发：
+
+* [VeriSol](https://github.com/utopia-group/verisol)
+* [SmartPulseTool](https://github.com/utopia-group/SmartPulseTool/tree/master)
+
+保留了对工具原有特性的支持，也即是说，原有工具的数据集同样能得到验证。
+
+同样的，如要了解当前工具的细节，除本文档以外，也可以参考原仓库对相应部分内容的描述。
+
+
 
 ## 参考资料
 

@@ -5,13 +5,6 @@ A Intention-to-Code consistency checker for  Smart Contracts.
 
 本仓库记录了InplusLab与Webank关于智能合约意图一致性检测算法的主要内容，旨在利用形式化验证等方法验证编写合约与意图是否一致，这其中包含了功能性与非功能性的需求。该算法旨在追求最大程度的用户友好和自动化，能够让没有过多形式化验证经验的使用者也能顺利使用该工具。理想情况下，用户仅需要编写简单的规约即可自动完成智能合约的一致性验证。
 
-### Built With
-
-本项目基于现有的两个工具进行研究和开发：
-
-* [VeriSol](https://github.com/utopia-group/verisol)
-* [SmartPulseTool](https://github.com/utopia-group/SmartPulseTool/tree/master)
-
 ## Getting Started
 
 目前，本项目可通过一个配置好的docker容器或完全手动配置来实现，详见[快速上手](https://veriinplus.github.io/IcyChecker/#/?id=%e5%bf%ab%e9%80%9f%e4%b8%8a%e6%89%8b)。
@@ -31,10 +24,17 @@ IcyChecker contractFile contractName spec
 目前，我们提供了SmartPulse的使用说明，参见[使用文档](https://veriinplus.github.io/IcyChecker/)。该部分提供了两个在公链上极为常见的场景案例——众筹和竞拍，同时我们也提供了目前论文中出现过的合约数据集。
 
 ## TODO
-- [ ] 调研联盟链合约验证情形，研究规约的适用场景和范围
-- [ ] 研究规约的易写和易读性
-- [ ] 研究依赖工具的设计和实现
-- [ ] 完善文档和使用说明
+- [x] 调研联盟链合约验证情形，研究规约的适用场景和范围
+- [x] 研究规约的易写和易读性
+- [x] 研究依赖工具的设计和实现
+- [x] 完善文档和使用说明
+
+## Built On
+
+本项目基于现有的两个工具进行研究和开发，该部分内容遵守其相应的license：
+
+* [VeriSol](https://github.com/utopia-group/verisol)
+* [SmartPulseTool](https://github.com/utopia-group/SmartPulseTool/tree/master)
 
 ## License
 
