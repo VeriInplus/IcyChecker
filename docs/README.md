@@ -1,6 +1,10 @@
 # IcyChecker
 A Intention-to-Code consistency checker for Smart Contracts.
 
+该工具由中山大学InplusLab和微众银行团队共同合作修改和推进。
+
+<img src="../asset/parties.jpg" alt="参与方" style="zoom: 67%;" />
+
 ## 快速上手
 
 #### 1 直接使用
