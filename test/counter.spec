@@ -1,1 +1,1 @@
-// #LTLProperty: ![](finished(*, this.tool.counter.value < 0))
+// #LTLProperty: !<>(finished(*, this.tool.counter.value < 0))

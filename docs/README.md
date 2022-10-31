@@ -67,7 +67,7 @@ source /etc/profile
 
 - 文字描述：合约中变量x在合约运行生命周期中不会出现某性质
 
-- 规约模板：`#LTLProperty: [](!运行状态(函数, 表达式))`
+- 规约模板：`#LTLProperty: !<>(运行状态(函数, 表达式))`
 
 - 运行状态可选：finished，started分别代表结束和开始
 
@@ -84,7 +84,7 @@ source /etc/profile
 - 规约语言：
 
   ```
-   // #LTLProperty: ![](finished(*, this.tool.counter.value < 0))
+   // #LTLProperty: !<>(finished(*, this.tool.counter.value < 0))
   ```
 
 - 验证脚本：

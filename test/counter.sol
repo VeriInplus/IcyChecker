@@ -25,7 +25,7 @@ contract CounterUtil {
 
     function decrement() external {
         require(
-            tool.counter.value >= 0,
+            tool.counter.value > 0,
             "Counters decrement: subtraction overflow"
         );
         tool.counter.value = tool.counter.value - 1;
